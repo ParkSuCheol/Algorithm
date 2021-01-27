@@ -11,10 +11,6 @@ public class Solution_PG_K번째수_정렬 {
 			answer[i] = tmp[commands[i][2]-1];
 		}
 		
-		for (int i = 0; i < answer.length; i++) {
-			System.out.print(answer[i] + " ");
-		}
-		
 		return answer;
 	}
 	
@@ -22,7 +18,7 @@ public class Solution_PG_K번째수_정렬 {
 		int[] array = {1,5,2,6,3,7,4};
 		int[][] commands = {{2,5,3},{4,4,1},{1,7,3}};
 		
-		solution(array,commands);
-		
+//		solution(array,commands);
+		System.out.println(Arrays.toString(solution(array,commands)));
 	}
 }
