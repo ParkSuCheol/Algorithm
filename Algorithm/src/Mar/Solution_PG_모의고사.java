@@ -16,7 +16,9 @@ public class Solution_PG_모의고사 {
 		int[] st1 = { 1, 2, 3, 4, 5 };
 		int[] st2 = { 2, 1, 2, 3, 2, 4, 2, 5 };
 		int[] st3 = { 3, 3, 1, 1, 2, 2, 4, 4, 5, 5 };
-
+		
+		
+		
 		int st1_cnt = 0, st2_cnt = 0, st3_cnt = 0;
 
 		for (int i = 0; i < answers.length; i++) {
@@ -27,10 +29,7 @@ public class Solution_PG_모의고사 {
 			if (answers[i] == st3[i % 10])
 				st3_cnt++;
 		}
-//		
-//		System.out.println(st1_cnt);
-//		System.out.println(st2_cnt);
-//		System.out.println(st3_cnt);
+		
 		int[] score = new int[3];
 		score[0] = st1_cnt;
 		score[1] = st2_cnt;
