@@ -15,9 +15,12 @@ public class practice {
 		}
 		Collections.sort(arr);
 		answer = new String[arr.size()];
-		for (int i = 0; i < arr.size(); i++) {
+		
+		for (int i = 0; i < answer.length; i++) {
 			answer[i] = arr.get(i).substring(1,arr.get(i).length());
 		}
+		
 		return answer;
 	}
 }
+
