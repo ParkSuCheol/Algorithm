@@ -17,7 +17,7 @@ public class Solution_PG_KAKAO_크레인인형뽑기게임 {
 		stack.push(0);
 		for (int i = 0; i < moves.length; i++) {
 			int N = moves[i] - 1;
-			for (int j = 0; j < 5; j++) {
+			for (int j = 0; j < board[0].length; j++) {
 				if(board[j][N] != 0) {
 					int num = board[j][N];
 					if(stack.peek() == num) {

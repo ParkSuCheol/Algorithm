@@ -3,24 +3,23 @@ import java.util.*;
 public class practice {
 
 	public static void main(String[] args) {
-		String[] a = {"sun","bed","car"};
-		System.out.println(Arrays.toString(Solution(a,1)));
+		int[] a = { 4, 3, 2, 1, };
+		System.out.println(Arrays.toString(Solution(a)));
 	}
-	
-	public static String[] Solution(String[] strings, int n) {
-		String[] answer = {};
-		ArrayList<String> arr = new ArrayList<>();
-		for (int i = 0; i < strings.length; i++) {
-			arr.add(strings[i].charAt(n) + strings[i]);
-		}
-		Collections.sort(arr);
-		answer = new String[arr.size()];
+
+	public static int[] Solution(int[] arr) {
+		int[] answer = {};
+		ArrayList<Integer> list = new ArrayList<>();
 		
+		for(int c : arr)
+			list.add(c);
+		
+		Integer min = Collections.min(list);
+		list.remove(min);
+		answer = new int[list.size()];
 		for (int i = 0; i < answer.length; i++) {
-			answer[i] = arr.get(i).substring(1,arr.get(i).length());
+			answer[i] = list.get(i);
 		}
-		
 		return answer;
 	}
 }
-
