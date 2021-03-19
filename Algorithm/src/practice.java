@@ -3,25 +3,51 @@ import java.util.Arrays;
 public class practice {
 
 	public static void main(String[] args) {
-		int[] arr1 = {9,20,28,18,11};
-		int[] arr2 = {30,1,21,17,28};
-		System.out.println(Arrays.toString(solution(5,arr1,arr2)));
+		int[] arr = { 1, 2, 3, 4, 5 };
+		System.out.println(Arrays.toString(solution(8, arr)));
 	}
 
-	public static String[] solution(int n, int[] arr1, int[] arr2) {
-		String[] answer = new String[n];
-		for (int i = 0; i < n; i++) {
-			String temp1 = Integer.toBinaryString(arr1[i] | arr2[i]);
-			
-			if(temp1.length() != n) {
-				while(!(temp1.length() == n)) {
-					temp1 = "0"+temp1;
+	public static int[] solution(int N, int[] stages) {
+		int[] answer = new int[N];
+		fail[] fails = new fail[N];
+		double stage;
+		double player;
+		
+		for (int i = 1; i <= N; i++) {
+			stage = 0;
+			player = 0;
+			for (int j = 0; j < stages.length; j++) {
+				if(i <= stages[j]) {
+					player++;
+					if( i == stages[j])
+						stage++;
 				}
 			}
-			temp1 = temp1.replaceAll("1","#");
-			temp1 = temp1.replaceAll("0", " ");
-			answer[i] = temp1;
+			if(player == 0) {
+				fails[i-1] = new fail(i,0);
+			}else {
+				fails[i-1] = new fail(i, stage/player);
+			}
 		}
+		
+		Arrays.sort(fails,(o1,o2)->{
+			return Double.compare(o2.rate, o1.rate);
+		});
+		
+		for (int i = 0; i < N; i++) {
+			answer[i] = fails[i].num;
+		}
+		
 		return answer;
+	}
+	
+	public static class fail{
+		int num;
+		double rate;
+		
+		fail(int num, double rate) {
+			this.num = num;
+			this.rate = rate;
+		}
 	}
 }
