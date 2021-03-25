@@ -14,7 +14,6 @@ public class Solution_PG_다리를지나는트럭 {
         
         int max = 0;
         for(int w : truck_weights) {
-        	
         	while(true) {
         		if(q.isEmpty()) {
         			q.offer(w);
@@ -23,7 +22,6 @@ public class Solution_PG_다리를지나는트럭 {
         			break;
         		}else if (q.size() == bridge_length) {
         			max -= q.poll();
-        			System.out.println(max);
         		}else {
         			if(max + w > weight) {
         				q.offer(0);
@@ -32,7 +30,6 @@ public class Solution_PG_다리를지나는트럭 {
         				q.offer(w);
         				max += w;
         				answer++;
-        				System.out.println("max : " + max + "   w : " + w );
         				break;
         			}
         		}
