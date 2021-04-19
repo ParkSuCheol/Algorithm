@@ -57,7 +57,7 @@ public class Solution_PG_KAKAO_수식최대화 {
 			// 원본 ArrayList 를 복사해준다.
 			ArrayList<Long> cNums = new ArrayList<>(nums);
 			ArrayList<Character> cOps = new ArrayList<Character>(ops);
-			System.out.println(cNums.size() + " " + cOps.size());
+//			System.out.println(cNums.size() + " " + cOps.size());
 
 			// 우선순위에 맞게 계산. list index 주의!
 			// 숫자는 연산자 보다 항상 1개가 많다.
