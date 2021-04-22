@@ -1,72 +1,41 @@
-import java.util.ArrayList;
+import java.util.*;
 
 public class practice2 {
 	public static void main(String[] args) {
-		String s = "100-200*300-500+20";
-		System.out.println(solution(s));
+		String s = "{{1,2,3},{2,1},{1,2,4,3},{2}}";
+		System.out.println(Arrays.toString(solution(s)));
 	}
 
-	static long answer;
-	static ArrayList<Character> ops = new ArrayList<>();
-	static ArrayList<Long> nums = new ArrayList<>();
-	static boolean[] check = new boolean[3];
-	static char[] p = { '+', '-', '*' };
-
-	public static long solution(String expression) {
-		answer = 0;
-		String s = "";
-		for (int i = 0; i < expression.length(); i++) {
-			char c = expression.charAt(i);
-			if (c >= '0' && c <= '9') {
-				s += c;
-			} else {
-				nums.add(Long.parseLong(s));
-				ops.add(c);
-				s = "";
-			}
-		}
-		nums.add(Long.parseLong(s));
-
-		dfs(0, new char[3]);
-
-		return answer;
-	}
-
-	private static void dfs(int count, char[] cs) {
-		if (count == 3) {
-			ArrayList<Character> cops = new ArrayList<>(ops);
-			ArrayList<Long> cnums = new ArrayList<>(nums);
-
-			for (int i = 0; i < cs.length; i++) {
-				for (int j = 0; j < cops.size(); j++) {
-					if (cops.get(j) == cs[i]) {
-						long ans = cal(cnums.remove(j), cnums.remove(j), cops.remove(j));
-						cnums.add(j, ans);
-						j--;
-					}
+	public static int[] solution(String s) {
+		int[] answer;
+		
+		s = s.substring(2,s.length()-2);
+		s = s.replace("},{", "-");
+		
+		String[] arr = s.split("-");
+		
+		
+		Arrays.sort(arr,(a,b) ->{
+			return a.length() - b.length();
+		});
+		
+		ArrayList<Integer> temp = new ArrayList<>();
+		
+		for(String c : arr) {
+			String[] val = c.split(",");
+			for(int i = 0; i < val.length; i++	) {
+				int num = Integer.parseInt(val[i]);
+				if(!temp.contains(num)) {
+					temp.add(num);
 				}
 			}
-			answer = Math.max(answer, Math.abs(cnums.get(0)));
 		}
-
-		for (int i = 0; i < 3; i++) {
-			if (!check[i]) {
-				check[i] = true;
-				cs[count] = p[i];
-				dfs(count + 1, cs);
-				check[i] = false;
-			}
+		
+		answer = new int[temp.size()];
+		for (int i = 0; i < answer.length; i++) {
+			answer[i] = temp.get(i);
 		}
-	}
-
-	private static long cal(Long a, Long b, Character c) {
-		long ans = 0;
-		if (c == '+')
-			ans = a + b;
-		else if (c == '-')
-			ans = a - b;
-		else
-			ans = a * b;
-		return ans;
+		
+		return answer;
 	}
 }
