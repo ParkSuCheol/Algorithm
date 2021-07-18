@@ -16,6 +16,7 @@ public class Solution_BJ_1012_유기농배추dfs {
 		for (int i = 0; i < tc; i++) {
 			intput();
 			pro();
+			print();
 		}
 	}
 
@@ -56,4 +57,14 @@ public class Solution_BJ_1012_유기농배추dfs {
 			dfs(nx, ny);
 		}
 	}
+	
+	public static void print()	{
+		for (int i = 0; i < N; i++) {
+			for (int j = 0; j < M; j++) {
+				System.out.print(map[i][j] + " ");
+			}
+			System.out.println();
+		}
+	}
+
 }

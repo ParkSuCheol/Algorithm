@@ -26,14 +26,13 @@ public class Solution_BJ_1012_¿Ø±‚≥ÛπË√ﬂbfs {
 		int tc = sc.nextInt();
 		for (int i = 0; i < tc; i++) {
 			input();
-			print();
 			pro();
 		}
 	}
 
 	public static void input() {
-		int M = sc.nextInt();
-		int N = sc.nextInt();
+		M = sc.nextInt();
+		N = sc.nextInt();
 		int K = sc.nextInt();
 		map = new int[M][N];
 		v = new boolean[M][N];
@@ -74,14 +73,6 @@ public class Solution_BJ_1012_¿Ø±‚≥ÛπË√ﬂbfs {
 			}
 		}
 	}
-	public static void print()	{
-		for (int i = 0; i < M; i++) {
-			for (int j = 0; j < N; j++) {
-				System.out.print(map[i][j] + " ");
-			}
-			System.out.println();
-		}
-	}
-
+	
 	
 }
