@@ -1,6 +1,6 @@
 package July;
 import java.util.*;
-public class Solution_BJ_11725_트리의부모찾기 {
+public class Solution_BJ_11725_트리의부모찾기_트리 {
 	public static void main(String[] args) {
 		input();
 		pro();

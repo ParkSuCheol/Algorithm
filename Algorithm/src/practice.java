@@ -1,45 +1,44 @@
 import java.util.*;
-class practice{
+
+class practice {
 	public static void main(String[] args) {
 		input();
+		pro();
 	}
 	static int N;
-	static List<Integer>[] rel;
-	static int res = -1;
+	static ArrayList<Integer>[] list;
 	static boolean[] v;
+	static int[] parents;
 	public static void input() {
 		Scanner sc = new Scanner(System.in);
 		N = sc.nextInt();
-		rel = new ArrayList[N+1];
-		for (int i = 1; i <= N; i++) {
-			rel[i] = new ArrayList<>();
-		}
+		list = new ArrayList[N+1];
+		parents = new int[N+1];
 		v = new boolean[N+1];
-		int x = sc.nextInt();
-		int y = sc.nextInt();
-		int l = sc.nextInt();
-		for (int i = 0; i < l; i++) {
+		for (int i = 1; i <= N; i++) {
+			list[i] = new ArrayList<>();
+		}
+		for (int i = 0; i < N-1; i++) {
 			int a = sc.nextInt();
 			int b = sc.nextInt();
-			rel[a].add(b);
-			rel[b].add(a);
+			list[a].add(b);
+			list[b].add(a);
 		}
-		dfs(x,y,0);
-		System.out.println(res);
 	}
 	
-	public static void dfs(int start, int end, int cnt) {
-		if(start == end) {
-			res = cnt;
-			return;
+	public static void pro() {
+		dfs(1);
+		for (int i = 2; i <= N; i++) {
+			System.out.println(parents[i]);
 		}
+	}
+	public static void dfs(int start) {
 		v[start] = true;
-		for(int i : rel[start]) {
-			if(!v[i]) {
-				dfs(i,end,cnt+1);
+		for(int i : list[start]) {
+			if (!v[i]) {
+				parents[i] = start;
+				dfs(i);
 			}
 		}
-		
 	}
-	
 }
