@@ -1,55 +1,44 @@
 import java.util.*;
-
+import java.io.*;
 class practice {
-	public static void main(String[] args) {
-		input();
-		pro();
-	}
 	static int N;
-	static int[][] childs;
-	static StringBuilder sb = new StringBuilder();
-	static Scanner sc = new Scanner(System.in);
-	public static void input() {
-		N = sc.nextInt();
-		childs = new int[30][2];
-		for (int i = 0; i < N; i++) {
-			char curCh = sc.next().charAt(0);
-			int cur = (int) (curCh-'A');
-			for (int k = 0; k < 2; k++) {
-				char ch = sc.next().charAt(0);
-				if(ch != '.')
-					childs[cur][k] = (int) (ch-'A');
-				else
-					childs[cur][k] = -1;
-			}
+	static ArrayList<Integer>[] arr;
+	static int ans;
+	static boolean[] v;
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+		StringTokenizer st;
+		N = Integer.parseInt(br.readLine());
+		arr = new ArrayList[N+1];
+		v = new boolean[N+1];
+		for (int i = 1; i <= N; i++) {
+			arr[i] = new ArrayList<>();
 		}
+		for (int i = 1; i < N; i++) {
+			st = new StringTokenizer(br.readLine());
+			int a = Integer.parseInt(st.nextToken());
+			int b = Integer.parseInt(st.nextToken());
+			arr[a].add(b);
+			arr[b].add(a);
+		}
+		pro();
+		System.out.println(ans % 2 == 0 ? "No" : "Yes");
 	}
 	
 	public static void pro() {
-		in_order(0);
-		sb.append('\n');
-		pre_order(0);
-		sb.append('\n');
-		post_order(0);
-		System.out.println(sb);
+		ans = 0;
+		dfs(1,0);
 	}
-	
-	public static void in_order(int x) {
-		if(x == -1) return;
-		in_order(childs[x][0]);
-		sb.append((char)(x+'A'));
-		in_order(childs[x][1]);
-	}
-	public static void pre_order(int x) {
-		if(x == -1) return;
-		sb.append((char)(x+'A'));
-		pre_order(childs[x][0]);
-		pre_order(childs[x][1]);
-	}
-	public static void post_order(int x) {
-		if(x == -1) return;
-		post_order(childs[x][0]);
-		post_order(childs[x][1]);
-		sb.append((char)(x+'A'));
+	public static void dfs(int node, int cnt) {
+		v[node] = true;
+		for(int i : arr[node]) {
+			if(!v[i]) {
+				dfs(i,cnt+1);
+			}
+		}
+		if(node != 1 && arr[node].size() == 1) {
+			ans += cnt;
+		}
 	}
 }
