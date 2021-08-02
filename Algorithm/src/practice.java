@@ -15,6 +15,8 @@ class practice {
 		for (int i = 1; i <= N; i++) {
 			arr[i] = new ArrayList<>();
 		}
+		//¡÷ºÆ
+		
 		for (int i = 1; i < N; i++) {
 			st = new StringTokenizer(br.readLine());
 			int a = Integer.parseInt(st.nextToken());
