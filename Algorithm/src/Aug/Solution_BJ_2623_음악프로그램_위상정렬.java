@@ -8,7 +8,6 @@ public class Solution_BJ_2623_음악프로그램_위상정렬 {
 	static ArrayList<Integer>[] list;
 	static int N,M;
 	static int[] indeg;
-	static StringBuilder sb = new StringBuilder();
 	static Scanner sc = new Scanner(System.in);
 	public static void input() {
 		N = sc.nextInt();
