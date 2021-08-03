@@ -1,46 +1,44 @@
 import java.util.*;
-import java.io.*;
 class practice {
-	static int N;
-	static ArrayList<Integer>[] arr;
-	static int ans;
-	static boolean[] v;
-	public static void main(String[] args) throws IOException {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-		StringTokenizer st;
-		N = Integer.parseInt(br.readLine());
-		arr = new ArrayList[N+1];
-		v = new boolean[N+1];
-		for (int i = 1; i <= N; i++) {
-			arr[i] = new ArrayList<>();
-		}
-		//¡÷ºÆ
-		
-		for (int i = 1; i < N; i++) {
-			st = new StringTokenizer(br.readLine());
-			int a = Integer.parseInt(st.nextToken());
-			int b = Integer.parseInt(st.nextToken());
-			arr[a].add(b);
-			arr[b].add(a);
-		}
+	public static void main(String[] args){
+		input();
 		pro();
-		System.out.println(ans % 2 == 0 ? "No" : "Yes");
 	}
-	
-	public static void pro() {
-		ans = 0;
-		dfs(1,0);
-	}
-	public static void dfs(int node, int cnt) {
-		v[node] = true;
-		for(int i : arr[node]) {
-			if(!v[i]) {
-				dfs(i,cnt+1);
-			}
+	static Scanner sc = new Scanner(System.in);
+	static int N,M;
+	static ArrayList<Integer>[] list;
+	static int[] dy;
+	static StringBuilder sb = new StringBuilder();
+	public static void input() {
+		N = sc.nextInt();
+		M = sc.nextInt();
+		list = new ArrayList[N+1];
+		dy = new int[N+1];
+		for (int i = 1; i <= N; i++) {
+			list[i] = new ArrayList<>();
 		}
-		if(node != 1 && arr[node].size() == 1) {
-			ans += cnt;
+		for (int i = 1; i <= N; i++) {
+			int x = sc.nextInt();
+			if(i == 1) continue;
+			list[x].add(i);
+		}
+		for (int i = 1; i <= M; i++) {
+			int a = sc.nextInt();
+			int b = sc.nextInt();
+			dy[a] += b;
+		}
+	}
+	public static void pro() {
+		dfs(1);
+		for (int i = 1; i <= N; i++) {
+			sb.append(dy[i]).append(' ');
+		}
+		System.out.println(sb);
+	}
+	public static void dfs(int x) {
+		for(int y : list[x]) {
+			dy[y] += dy[x];
+			dfs(y);
 		}
 	}
 }
