@@ -8,7 +8,7 @@ class practice {
 	static int N,M;
 	static ArrayList<Integer>[] list;
 	static int[] indeg;
-	
+	// indeg
 	public static void input() {
 		N = sc.nextInt();
 		M = sc.nextInt();
