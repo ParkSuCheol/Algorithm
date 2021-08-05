@@ -1,9 +1,10 @@
+package Aug;
+
 import java.util.*;
 
-class practice {
+public class Solution_1238_파티_다익스트라 {
 	public static void main(String[] args) {
 		input();
-		pro();
 	}
 
 	static class Edge {
@@ -27,55 +28,58 @@ class practice {
 	}
 
 	static Scanner sc = new Scanner(System.in);
-	static int N, M, start, end;
-	static ArrayList<Edge>[] Edges;
-	static int[] dist;
+	static int N, M, X;
 
 	public static void input() {
+		int[] dist, reverse_dist;
+		ArrayList<Edge>[] Edges, reverse_Edges;
 		N = sc.nextInt();
 		M = sc.nextInt();
+		X = sc.nextInt();
 		dist = new int[N + 1];
+		reverse_dist = new int[N + 1];
 		Edges = new ArrayList[N + 1];
-		for (int i = 1; i <= N; i++)
+		reverse_Edges = new ArrayList[N + 1];
+		for (int i = 1; i <= N; i++) {
 			Edges[i] = new ArrayList<>();
+			reverse_Edges[i] = new ArrayList<>();
+		}
 		for (int i = 1; i <= M; i++) {
 			int from = sc.nextInt();
 			int to = sc.nextInt();
 			int weight = sc.nextInt();
 			Edges[from].add(new Edge(to, weight));
+			reverse_Edges[to].add(new Edge(from, weight));
 		}
-		start = sc.nextInt();
-		end = sc.nextInt();
+		Djikstra(X,Edges,dist);
+		Djikstra(X,reverse_Edges,reverse_dist);
+		int res = 0;
+		for (int i = 1; i <= N; i++) {
+			int sum = dist[i] + reverse_dist[i];
+			if(sum > res)
+				res = sum;
+		}
+		System.out.println(res);
 	}
 
-	public static void pro() {
-		djikstra(start);
-		System.out.println(dist[end]);
-	}
-
-	public static void djikstra(int start) {
-		for (int i = 1; i <= N; i++)
+	public static void Djikstra(int start, ArrayList<Edge>[] Edges,int[] dist) {
+		for (int i = 1; i <= N; i++) 
 			dist[i] = Integer.MAX_VALUE;
-
-		PriorityQueue<Info> pq = new PriorityQueue<>((o1, o2) -> (o1.dist - o2.dist));
-
-		pq.add(new Info(start, 0));
 		dist[start] = 0;
-
+		
+		PriorityQueue<Info> pq = new PriorityQueue<>((o1, o2) -> (o1.dist - o2.dist));
+		pq.add(new Info(start, 0));
 		while (!pq.isEmpty()) {
 			Info info = pq.poll();
-
 			if (dist[info.idx] != info.dist)
 				continue;
-
 			for (Edge e : Edges[info.idx]) {
 				if (dist[info.idx] + e.weight >= dist[e.to])
 					continue;
-
 				dist[e.to] = dist[info.idx] + e.weight;
+				
 				pq.add(new Info(e.to, dist[e.to]));
 			}
 		}
-
 	}
 }
