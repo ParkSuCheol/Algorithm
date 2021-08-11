@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class practice2 {
+public class practice_HOME {
 	public static void main(String[] args) {
 		String s = "{{1,2,3},{2,1},{1,2,4,3},{2}}";
 		System.out.println(Arrays.toString(solution(s)));

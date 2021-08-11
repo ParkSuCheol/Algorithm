@@ -1,6 +1,6 @@
 import java.util.*;
 
-class practice {
+class practice_LANG {
 	public static void main(String[] args) {
 		input();
 		pro();
