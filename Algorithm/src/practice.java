@@ -27,10 +27,11 @@ class practice {
 	}
 
 	static Scanner sc = new Scanner(System.in);
-	static int N, M, start, end;
 	static ArrayList<Edge>[] Edges;
 	static int[] dist;
-
+	static int N,M;
+	static ArrayList<Integer>[] list;
+	static int[] indeg;
 	public static void input() {
 		N = sc.nextInt();
 		M = sc.nextInt();
@@ -44,13 +45,9 @@ class practice {
 			int weight = sc.nextInt();
 			Edges[from].add(new Edge(to, weight));
 		}
-		start = sc.nextInt();
-		end = sc.nextInt();
 	}
 
 	public static void pro() {
-		djikstra(start);
-		System.out.println(dist[end]);
 	}
 
 	public static void djikstra(int start) {
