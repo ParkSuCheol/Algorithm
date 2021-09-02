@@ -14,6 +14,7 @@ public class Solution_PG_입국심사 {
 
 		long start, mid, end;
 		start = 0;
+		
 		end = Long.MAX_VALUE;
 		long sum;
 		// 모든 사람이 심사 받는데 걸리는 시간 이분 탐색
@@ -35,6 +36,8 @@ public class Solution_PG_입국심사 {
 			}else {
 				end = mid - 1;
 				answer = Math.min(answer, mid);
+				// answer = mid; 
+				// 이거도 가능
 			}
 			System.out.println(answer);
 		}

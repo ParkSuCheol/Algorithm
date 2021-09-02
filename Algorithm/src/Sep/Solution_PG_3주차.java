@@ -15,7 +15,7 @@ public class Solution_PG_3주차 {
 		visitBoard = new boolean[boardSize][boardSize];
 		visitTable = new boolean[boardSize][boardSize];
 
-		// game_board 에서 '빈 공간' 을 하나 씩 추출
+		// game_board 에서 '빈 공간' 을 하나 씩 추출b245tyt
 		for (int i = 0; i < boardSize; i++) {
 			for (int j = 0; j < boardSize; j++) {
 
